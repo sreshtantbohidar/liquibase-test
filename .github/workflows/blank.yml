@@ -28,6 +28,7 @@ jobs:
         with:
           changelogFile: "postgres-test.sql"
           driver: "org.postgresql.Driver"
+          driverPropertiesFile: "liquibase/lib/postgresql-42.5.4.jar"
           url: ${{ secrets.URL }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
