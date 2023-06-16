@@ -27,7 +27,7 @@ jobs:
       - uses: liquibase-github-actions/status@v4.21.1
         with:
           changelogFile: "postgres-test.sql"
-          url: ${{ secret.URL }}
+          url: ${{ secrets.URL }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
         
