@@ -34,7 +34,6 @@ jobs:
       - name: "Checks show - List available checks, their configuration options, and current settings"
         uses: liquibase-github-actions/checks-show@v4.21.1
         with:
-          changeLogFile: "changelogs/example-changelog.sql"
           url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
           driver: 'org.postgresql.Driver'
           username: 'b.sreshtant'
