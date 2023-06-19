@@ -8,3 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: liquibase/liquibase-github-action@v5
+        with:
+          operation: "Checks run"
+          changeLogFile: "changelogs/example-changelog.sql"
+          url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
+          username: 'b.sreshtant'
+          password: 'vqjz7CBk1YGi'
