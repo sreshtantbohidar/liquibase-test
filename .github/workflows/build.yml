@@ -9,7 +9,8 @@ on:
 env:
   psql_url: ${{ secrets.URL }} 
   psql_username: ${{ secrets.USERNAME }} 
-  psql_password: ${{ secrets.PASSWORD }} 
+  psql_password: ${{ secrets.PASSWORD }}
+  psql_driver: 'org.postgresql.Driver'
 
 jobs:
   runchecks:
@@ -22,36 +23,36 @@ jobs:
         uses: liquibase-github-actions/validate@v4.21.1
         with:
           changeLogFile: "changelogs/example-changelog.sql"
-          url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
-          driver: 'org.postgresql.Driver'
-          username: 'b.sreshtant'
-          password: 'vqjz7CBk1YGi'
+          url: ${{ env.psql_url }}
+          driver: ${{ env.psql_driver }}
+          username: ${{ env.psql_username }}
+          password: ${{ env.psql_password }}
 
       - name: "Status - Output the changesets that will be deployed"
         uses: liquibase-github-actions/status@v4.21.1
         with:
           changeLogFile: "changelogs/example-changelog.sql"
-          url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
-          driver: 'org.postgresql.Driver'
-          username: 'b.sreshtant'
-          password: 'vqjz7CBk1YGi'
+          url: ${{ env.psql_url }}
+          driver: ${{ env.psql_driver }}
+          username: ${{ env.psql_username }}
+          password: ${{ env.psql_password }}
           verbose: True
 
       - name: "Checks run - Check the changelog or database for issues"
         uses: liquibase-github-actions/checks-run@v4.21.1
         with:
           changeLogFile: "changelogs/example-changelog.sql"
-          url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
-          driver: 'org.postgresql.Driver'
-          username: 'b.sreshtant'
-          password: 'vqjz7CBk1YGi'
+          url: ${{ env.psql_url }}
+          driver: ${{ env.psql_driver }}
+          username: ${{ env.psql_username }}
+          password: ${{ env.psql_password }}
 
       - name: "Update - Update the changes"
         uses: liquibase-github-actions/update@v4.21.1
         with:
           changeLogFile: "changelogs/example-changelog.sql"
-          url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
-          driver: 'org.postgresql.Driver'
-          username: 'b.sreshtant'
-          password: 'vqjz7CBk1YGi'
+          url: ${{ env.psql_url }}
+          driver: ${{ env.psql_driver }}
+          username: ${{ env.psql_username }}
+          password: ${{ env.psql_password }}
         if: github.event_name == 'push' 
