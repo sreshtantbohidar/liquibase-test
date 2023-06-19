@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: liquibase/liquibase-github-action@v5
         with:
-          operation: "Checks run"
+          operation: "status"
           changeLogFile: "changelogs/example-changelog.sql"
           url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
           username: 'b.sreshtant'
