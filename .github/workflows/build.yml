@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: "validate - validate the changelog"
+      - name: "validate - validate the changelog ${{ secrets.USERNAME }}"
         uses: liquibase-github-actions/validate@v4.21.1
         with:
           changeLogFile: "changelogs/example-changelog.sql"
