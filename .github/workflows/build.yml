@@ -10,6 +10,7 @@ env:
   psql_url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
   psql_username: 'b.sreshtant'
   psql_password: 'vqjz7CBk1YGi'
+  psql_driver:  'org.postgresql.Driver'
 
 jobs:
   runchecks:
@@ -23,7 +24,7 @@ jobs:
         with:
           changeLogFile: "changelogs/example-changelog.sql"
           url: '${{ env.psql_url }}'
-          driver: 'org.postgresql.Driver'
+          driver: '${{ env.psql_url }}'
           username: '${{ env.psql_username }}'
           password: '${{ env.psql_password }}'
 
@@ -31,27 +32,27 @@ jobs:
         uses: liquibase-github-actions/status@v4.21.1
         with:
           changeLogFile: "changelogs/example-changelog.sql"
-          url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
-          driver: 'org.postgresql.Driver'
-          username: 'b.sreshtant'
-          password: 'vqjz7CBk1YGi'
+          url: '${{ env.psql_url }}'
+          driver: '${{ env.psql_url }}'
+          username: '${{ env.psql_username }}'
+          password: '${{ env.psql_password }}'
           verbose: True
 
       - name: "Checks run - Check the changelog or database for issues"
         uses: liquibase-github-actions/checks-run@v4.21.1
         with:
           changeLogFile: "changelogs/example-changelog.sql"
-          url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
-          driver: 'org.postgresql.Driver'
-          username: 'b.sreshtant'
-          password: 'vqjz7CBk1YGi'
+          url: '${{ env.psql_url }}'
+          driver: '${{ env.psql_url }}'
+          username: '${{ env.psql_username }}'
+          password: '${{ env.psql_password }}'
 
       - name: "Update - Update the changes"
         uses: liquibase-github-actions/update@v4.21.1
         with:
           changeLogFile: "changelogs/example-changelog.sql"
-          url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
-          driver: 'org.postgresql.Driver'
-          username: 'b.sreshtant'
-          password: 'vqjz7CBk1YGi'
+          url: '${{ env.psql_url }}'
+          driver: '${{ env.psql_url }}'
+          username: '${{ env.psql_username }}'
+          password: '${{ env.psql_password }}'
         if: github.event_name == 'push' 
