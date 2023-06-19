@@ -7,11 +7,13 @@ jobs:
     name: "Checkout Code"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: liquibase/liquibase-github-action@v5
+      - uses: actions/checkout@v3
+      - uses: liquibase-github-actions/status@v4.21.1
         with:
-          operation: "status"
           changeLogFile: "changelogs/example-changelog.sql"
           url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
+          driver: 'org.postgresql.Driver'
+          driverPropertiesFile: 'lib/jdbc-postgresql.jar'
           username: 'b.sreshtant'
           password: 'vqjz7CBk1YGi'
+          verbose: True
