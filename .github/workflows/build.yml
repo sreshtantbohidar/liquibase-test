@@ -2,6 +2,9 @@ name: Build and Test
 
 on: [push, pull_request]
 
+env:
+  env_var: 
+
 jobs:
   runchecks:
     name: "Checkout Code"
@@ -27,6 +30,24 @@ jobs:
           username: 'b.sreshtant'
           password: 'vqjz7CBk1YGi'
           verbose: True
+
+      - name: "Checks show - List available checks, their configuration options, and current settings"
+        uses: liquibase-github-actions/checks-show@v4.21.1
+        with:
+          changeLogFile: "changelogs/example-changelog.sql"
+          url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
+          driver: 'org.postgresql.Driver'
+          username: 'b.sreshtant'
+          password: 'vqjz7CBk1YGi'
+
+      - name: "Checks run - Check the changelog or database for issues"
+        uses: liquibase-github-actions/checks-run@v4.21.1
+        with:
+          changeLogFile: "changelogs/example-changelog.sql"
+          url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
+          driver: 'org.postgresql.Driver'
+          username: 'b.sreshtant'
+          password: 'vqjz7CBk1YGi'
 
       - name: "Update - Update the changes"
         uses: liquibase-github-actions/update@v4.21.1
