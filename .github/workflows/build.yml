@@ -24,7 +24,7 @@ jobs:
         with:
           changeLogFile: "changelogs/example-changelog.sql"
           url: '${{ env.psql_url }}'
-          driver: '${{ env.psql_url }}'
+          driver: '${{ env.psql_driver }}'
           username: '${{ env.psql_username }}'
           password: '${{ env.psql_password }}'
 
@@ -33,7 +33,7 @@ jobs:
         with:
           changeLogFile: "changelogs/example-changelog.sql"
           url: '${{ env.psql_url }}'
-          driver: '${{ env.psql_url }}'
+          driver: '${{ env.psql_driver }}'
           username: '${{ env.psql_username }}'
           password: '${{ env.psql_password }}'
           verbose: True
@@ -43,7 +43,7 @@ jobs:
         with:
           changeLogFile: "changelogs/example-changelog.sql"
           url: '${{ env.psql_url }}'
-          driver: '${{ env.psql_url }}'
+          driver: '${{ env.psql_driver }}'
           username: '${{ env.psql_username }}'
           password: '${{ env.psql_password }}'
 
@@ -52,7 +52,7 @@ jobs:
         with:
           changeLogFile: "changelogs/example-changelog.sql"
           url: '${{ env.psql_url }}'
-          driver: '${{ env.psql_url }}'
+          driver: '${{ env.psql_driver }}'
           username: '${{ env.psql_username }}'
           password: '${{ env.psql_password }}'
         if: github.event_name == 'push' 
