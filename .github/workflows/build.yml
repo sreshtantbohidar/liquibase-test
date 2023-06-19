@@ -10,7 +10,6 @@ env:
   psql_url: ${{ secrets.URL }} 
   psql_username: ${{ secrets.USERNAME }} 
   psql_password: ${{ secrets.PASSWORD }}
-  psql_driver: 'org.postgresql.Driver'
 
 jobs:
   runchecks:
@@ -24,7 +23,7 @@ jobs:
         with:
           changeLogFile: "changelogs/example-changelog.sql"
           url: ${{ env.psql_url }}
-          driver: ${{ env.psql_driver }}
+          driver: 'org.postgresql.Driver'
           username: ${{ env.psql_username }}
           password: ${{ env.psql_password }}
 
@@ -33,7 +32,7 @@ jobs:
         with:
           changeLogFile: "changelogs/example-changelog.sql"
           url: ${{ env.psql_url }}
-          driver: ${{ env.psql_driver }}
+          driver: 'org.postgresql.Driver'
           username: ${{ env.psql_username }}
           password: ${{ env.psql_password }}
           verbose: True
@@ -43,7 +42,7 @@ jobs:
         with:
           changeLogFile: "changelogs/example-changelog.sql"
           url: ${{ env.psql_url }}
-          driver: ${{ env.psql_driver }}
+          driver: 'org.postgresql.Driver'
           username: ${{ env.psql_username }}
           password: ${{ env.psql_password }}
 
@@ -52,7 +51,7 @@ jobs:
         with:
           changeLogFile: "changelogs/example-changelog.sql"
           url: ${{ env.psql_url }}
-          driver: ${{ env.psql_driver }}
+          driver: 'org.postgresql.Driver'
           username: ${{ env.psql_username }}
           password: ${{ env.psql_password }}
         if: github.event_name == 'push' 
