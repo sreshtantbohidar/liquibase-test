@@ -13,7 +13,7 @@ env:
 
 jobs:
   runchecks:
-    name: "Checkout Code"
+    name: "POC CI/CD Liquibase"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
