@@ -3,7 +3,9 @@ name: Build and Test
 on: [push, pull_request]
 
 env:
-  env_var: 
+  psql_url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
+  psql_username: 'b.sreshtant'
+  psql_password: 'vqjz7CBk1YGi'
 
 jobs:
   runchecks:
@@ -48,3 +50,4 @@ jobs:
           driver: 'org.postgresql.Driver'
           username: 'b.sreshtant'
           password: 'vqjz7CBk1YGi'
+        if: github.event_name != 'push'
