@@ -12,6 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: "Checks show - List available checks, their configuration options, and current settings"
+        uses: liquibase-github-actions/checks-show@v4.21.1
+
       - name: "validate - validate the changelog"
         uses: liquibase-github-actions/validate@v4.21.1
         with:
@@ -30,14 +33,6 @@ jobs:
           username: 'b.sreshtant'
           password: 'vqjz7CBk1YGi'
           verbose: True
-
-      - name: "Checks show - List available checks, their configuration options, and current settings"
-        uses: liquibase-github-actions/checks-show@v4.21.1
-        with:
-          url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
-          driver: 'org.postgresql.Driver'
-          username: 'b.sreshtant'
-          password: 'vqjz7CBk1YGi'
 
       - name: "Checks run - Check the changelog or database for issues"
         uses: liquibase-github-actions/checks-run@v4.21.1
