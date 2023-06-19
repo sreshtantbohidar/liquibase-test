@@ -7,9 +7,9 @@ on:
     branches: [ main ]
 
 env:
-  psql_url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
-  psql_username: 'b.sreshtant'
-  psql_password: 'vqjz7CBk1YGi'
+  psql_url: ${{ secrets.URL }} 
+  psql_username: ${{ secrets.USERNAME }} 
+  psql_password: ${{ secrets.PASSWORD }} 
 
 jobs:
   runchecks:
