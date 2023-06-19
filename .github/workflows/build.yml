@@ -54,4 +54,4 @@ jobs:
           driver: 'org.postgresql.Driver'
           username: 'b.sreshtant'
           password: 'vqjz7CBk1YGi'
-        if: github.event_name != 'push'
+        if: github.event_name == 'push' 
