@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 env:
-  psql_url: ${{ secrets.URL }} 
+  psql_url: ${{ secrets.URL }}
   psql_username: ${{ secrets.USERNAME }} 
   psql_password: ${{ secrets.PASSWORD }} 
 
@@ -22,10 +22,10 @@ jobs:
         uses: liquibase-github-actions/validate@v4.21.1
         with:
           changeLogFile: "changelogs/example-changelog.sql"
-          url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
+          url: ${{ secrets.URL }}
           driver: 'org.postgresql.Driver'
-          username: 'b.sreshtant'
-          password: 'vqjz7CBk1YGi'
+          username: ${{ secrets.USERNAME }} 
+          password: ${{ secrets.PASSWORD }} 
 
       - name: "Status - Output the changesets that will be deployed"
         uses: liquibase-github-actions/status@v4.21.1
