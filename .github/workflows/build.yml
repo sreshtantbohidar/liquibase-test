@@ -9,7 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: liquibase-github-actions/validate@v4.21.1
+      - name: "validate - validate the changelog"
+        uses: liquibase-github-actions/validate@v4.21.1
         with:
           changeLogFile: "changelogs/example-changelog.sql"
           url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
@@ -17,15 +18,8 @@ jobs:
           username: 'b.sreshtant'
           password: 'vqjz7CBk1YGi'
 
-      - uses: liquibase-github-actions/checks-run@v4.21.1
-        with:
-          changeLogFile: "changelogs/example-changelog.sql"
-          url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
-          driver: 'org.postgresql.Driver'
-          username: 'b.sreshtant'
-          password: 'vqjz7CBk1YGi'
-
-      - uses: liquibase-github-actions/status@v4.21.1
+      - name: "Status - Output the changesets that will be deployed"
+        uses: liquibase-github-actions/status@v4.21.1
         with:
           changeLogFile: "changelogs/example-changelog.sql"
           url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
@@ -34,7 +28,8 @@ jobs:
           password: 'vqjz7CBk1YGi'
           verbose: True
 
-      - uses: liquibase-github-actions/update@v4.21.1
+      - name: "Update - Update the changes"
+        uses: liquibase-github-actions/update@v4.21.1
         with:
           changeLogFile: "changelogs/example-changelog.sql"
           url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
