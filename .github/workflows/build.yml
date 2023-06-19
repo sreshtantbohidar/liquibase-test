@@ -6,11 +6,6 @@ on:
   pull_request:
     branches: [ main ]
 
-env:
-  psql_url: ${{ secrets.URL }}
-  psql_username: ${{ secrets.USERNAME }} 
-  psql_password: ${{ secrets.PASSWORD }} 
-
 jobs:
   runchecks:
     name: "POC CI/CD Liquibase"
@@ -24,8 +19,8 @@ jobs:
           changeLogFile: "changelogs/example-changelog.sql"
           url: ${{ secrets.URL }}
           driver: 'org.postgresql.Driver'
-          username: ${{ secrets.USERNAME }} 
-          password: ${{ secrets.PASSWORD }} 
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
 
       - name: "Status - Output the changesets that will be deployed"
         uses: liquibase-github-actions/status@v4.21.1
