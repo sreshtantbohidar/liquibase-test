@@ -2,9 +2,9 @@ name: Build and Test
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, development, staging, master ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, development, staging, master ]
 
 env:
   psql_url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
