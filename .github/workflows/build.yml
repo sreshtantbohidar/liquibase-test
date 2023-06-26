@@ -55,4 +55,4 @@ jobs:
           driver: '${{ env.psql_driver }}'
           username: '${{ env.psql_username }}'
           password: '${{ env.psql_password }}'
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' 
