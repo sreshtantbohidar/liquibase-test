@@ -23,8 +23,9 @@ jobs:
       - name: "Generate Changelogs"
         uses: liquibase-github-actions/generate-changelog@v4.23.0
         with:
-          changeLogFile: "changelogs/example-changelog.sql"
           url: '${{ env.psql_url }}${{ env.dev_db}}'
           driver: '${{ env.psql_driver }}'
           username: '${{ env.psql_username }}'
           password: '${{ env.psql_password }}'
+          overwriteOutputFile: True
+          changeLogFile: "changelogs/example-changelog.sql"
