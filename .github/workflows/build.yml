@@ -20,17 +20,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: "validate - validate the changelog"
-        uses: liquibase-github-actions/validate@v4.21.1
-        with:
-          changeLogFile: "changelogs/example-changelog.sql"
-          url: '${{ env.psql_url }}${{ env.dev_db}}'
-          driver: '${{ env.psql_driver }}'
-          username: '${{ env.psql_username }}'
-          password: '${{ env.psql_password }}'
+      - name: "Console"
+        run: echo "$GITHUB_REF"
 
   dev-data-migration:
-      if: github.ref == 'development'
+      if: github.ref == 'development' && github.event_name == 'push'
       name: "DEV Data Migration"
       runs-on: ubuntu-latest
       steps:
@@ -45,7 +39,7 @@ jobs:
             password: '${{ env.psql_password }}'
             
   qa-data-migration:
-      if: github.ref == 'staging'
+      if: github.ref == 'staging' && github.event_name == 'push'
       name: "QA Data Migration"
       runs-on: ubuntu-latest
       steps:
@@ -60,7 +54,7 @@ jobs:
             password: '${{ env.psql_password }}'
             
   prod-data-migration:
-      if: github.ref == 'master'
+      if: github.ref == 'master' && github.event_name == 'push'
       name: "PROD Data Migration"
       runs-on: ubuntu-latest
       steps:
