@@ -6,18 +6,20 @@ on:
 
 env:
   dev_db: 'devDB'
+  qa_db: 'qaDB'
+  prod_DB: 'prodDB'
   psql_url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/'
   psql_username: 'b.sreshtant'
   psql_password: 'vqjz7CBk1YGi'
   psql_driver:  'org.postgresql.Driver'
-
+  
 jobs:
   runchecks:
     name: "POC CI/CD Liquibase"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: "validate - validate the changelog"
         uses: liquibase-github-actions/validate@v4.21.1
         with:
@@ -27,30 +29,48 @@ jobs:
           username: '${{ env.psql_username }}'
           password: '${{ env.psql_password }}'
 
-      - name: "Status - Output the changesets that will be deployed"
-        uses: liquibase-github-actions/status@v4.21.1
-        with:
-          changeLogFile: "changelogs/example-changelog.sql"
-          url: '${{ env.psql_url }}${{ env.dev_db}}'
-          driver: '${{ env.psql_driver }}'
-          username: '${{ env.psql_username }}'
-          password: '${{ env.psql_password }}'
-          verbose: True
-
-      - name: "Checks run - Check the changelog or database for issues"
-        uses: liquibase-github-actions/checks-run@v4.21.1
-        with:
-          changeLogFile: "changelogs/example-changelog.sql"
-          url: '${{ env.psql_url }}'
-          driver: '${{ env.psql_driver }}'
-          username: '${{ env.psql_username }}'
-          password: '${{ env.psql_password }}'
-      - name: "Update - Update the changes"
-        uses: liquibase-github-actions/update@v4.21.1
-        with:
-          changeLogFile: "changelogs/example-changelog.sql"
-          changeExecListenerPropertiesFile: "liquibase.properties"
-          url: '${{ env.psql_url }}${{ env.dev_db}}'
-          driver: '${{ env.psql_driver }}'
-          username: '${{ env.psql_username }}'
-          password: '${{ env.psql_password }}'
+  dev-data-migration:
+      if: github.ref == 'development'
+      name: "DEV Data Migration"
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - name: "Update - Update the changes"
+          uses: liquibase-github-actions/update@v4.21.1
+          with:
+            changeLogFile: "changelogs/example-changelog.sql"
+            url: '${{ env.psql_url }}${{ env.dev_db }}'
+            driver: '${{ env.psql_driver }}'
+            username: '${{ env.psql_username }}'
+            password: '${{ env.psql_password }}'
+            
+  qa-data-migration:
+      if: github.ref == 'staging'
+      name: "QA Data Migration"
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - name: "Update - Update the changes"
+          uses: liquibase-github-actions/update@v4.21.1
+          with:
+            changeLogFile: "changelogs/example-changelog.sql"
+            url: '${{ env.psql_url }}${{ env.qa_db }}'
+            driver: '${{ env.psql_driver }}'
+            username: '${{ env.psql_username }}'
+            password: '${{ env.psql_password }}'
+            
+  prod-data-migration:
+      if: github.ref == 'master'
+      name: "PROD Data Migration"
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - name: "Update - Update the changes"
+          uses: liquibase-github-actions/update@v4.21.1
+          with:
+            changeLogFile: "changelogs/example-changelog.sql"
+            url: '${{ env.psql_url }}${{ env.prod_DB }}'
+            driver: '${{ env.psql_driver }}'
+            username: '${{ env.psql_username }}'
+            password: '${{ env.psql_password }}'
+  
