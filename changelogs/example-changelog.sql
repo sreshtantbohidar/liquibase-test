@@ -5,3 +5,4 @@ CREATE TABLE "person" ("id" INTEGER NOT NULL, "name" VARCHAR(50) NOT NULL, "city
 
 -- changeset Sresht:2
 ALTER TABLE "person" ADD worksfor_company_id INT;
+
