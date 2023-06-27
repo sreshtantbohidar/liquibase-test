@@ -22,7 +22,6 @@ jobs:
         uses: liquibase-github-actions/validate@v4.21.1
         with:
           changeLogFile: "changelogs/example-changelog.sql"
-          changeExecListenerPropertiesFile: "liquibase.properties"
           url: '${{ env.psql_url }}${{ env.dev_db}}'
           driver: '${{ env.psql_driver }}'
           username: '${{ env.psql_username }}'
@@ -32,7 +31,6 @@ jobs:
         uses: liquibase-github-actions/status@v4.21.1
         with:
           changeLogFile: "changelogs/example-changelog.sql"
-          changeExecListenerPropertiesFile: "liquibase.properties"
           url: '${{ env.psql_url }}${{ env.dev_db}}'
           driver: '${{ env.psql_driver }}'
           username: '${{ env.psql_username }}'
@@ -43,7 +41,6 @@ jobs:
         uses: liquibase-github-actions/checks-run@v4.21.1
         with:
           changeLogFile: "changelogs/example-changelog.sql"
-          changeExecListenerPropertiesFile: "liquibase.properties"
           url: '${{ env.psql_url }}'
           driver: '${{ env.psql_driver }}'
           username: '${{ env.psql_username }}'
