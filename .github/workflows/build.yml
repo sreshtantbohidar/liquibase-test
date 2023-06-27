@@ -24,7 +24,7 @@ jobs:
         run: echo "$GITHUB_REF"
 
   dev-data-migration:
-      if: github.ref == 'development' && github.event_name == 'push'
+      if: github.ref == 'refs/heads/development' && github.event_name == 'push'
       name: "DEV Data Migration"
       runs-on: ubuntu-latest
       steps:
@@ -39,7 +39,7 @@ jobs:
             password: '${{ env.psql_password }}'
             
   qa-data-migration:
-      if: github.ref == 'staging' && github.event_name == 'push'
+      if: github.ref == 'refs/heads/staging' && github.event_name == 'push'
       name: "QA Data Migration"
       runs-on: ubuntu-latest
       steps:
@@ -54,7 +54,7 @@ jobs:
             password: '${{ env.psql_password }}'
             
   prod-data-migration:
-      if: github.ref == 'master' && github.event_name == 'push'
+      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       name: "PROD Data Migration"
       runs-on: ubuntu-latest
       steps:
