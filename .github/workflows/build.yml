@@ -2,12 +2,13 @@ name: Build and Test
 
 on:
   push:
-    branches: [ main, development, staging, master ]
+    branches: [ development, staging, master ]
   pull_request:
-    branches: [ main, development, staging, master ]
+    branches: [ development, staging, master ]
 
 env:
-  psql_url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/neondb'
+  dev_db: 'devDB'
+  psql_url: 'jdbc:postgresql://ep-icy-dream-444207.us-east-2.aws.neon.tech:5432/'
   psql_username: 'b.sreshtant'
   psql_password: 'vqjz7CBk1YGi'
   psql_driver:  'org.postgresql.Driver'
@@ -19,40 +20,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: "validate - validate the changelog"
-        uses: liquibase-github-actions/validate@v4.21.1
+      - name: "Generate Changelogs"
+        uses: liquibase-github-actions/generate-changelog@v4.23.0
         with:
           changeLogFile: "changelogs/example-changelog.sql"
-          url: '${{ env.psql_url }}'
+          url: '${{ env.psql_url }}${{ env.dev_db}}'
           driver: '${{ env.psql_driver }}'
           username: '${{ env.psql_username }}'
           password: '${{ env.psql_password }}'
-
-      - name: "Status - Output the changesets that will be deployed"
-        uses: liquibase-github-actions/status@v4.21.1
-        with:
-          changeLogFile: "changelogs/example-changelog.sql"
-          url: '${{ env.psql_url }}'
-          driver: '${{ env.psql_driver }}'
-          username: '${{ env.psql_username }}'
-          password: '${{ env.psql_password }}'
-          verbose: True
-
-      - name: "Checks run - Check the changelog or database for issues"
-        uses: liquibase-github-actions/checks-run@v4.21.1
-        with:
-          changeLogFile: "changelogs/example-changelog.sql"
-          url: '${{ env.psql_url }}'
-          driver: '${{ env.psql_driver }}'
-          username: '${{ env.psql_username }}'
-          password: '${{ env.psql_password }}'
-
-      - name: "Update - Update the changes"
-        uses: liquibase-github-actions/update@v4.21.1
-        with:
-          changeLogFile: "changelogs/example-changelog.sql"
-          url: '${{ env.psql_url }}'
-          driver: '${{ env.psql_driver }}'
-          username: '${{ env.psql_username }}'
-          password: '${{ env.psql_password }}'
-        if: github.event_name == 'push' 
