@@ -1,8 +1,4 @@
---liquibase formatted sql
+-- liquibase formatted sql
 
---changeset Sreshtant:1
-create table person (
-    id int primary key,
-    name varchar(50) not null,
-    city varchar(30)
-)
+-- changeset Sresht:1687849326569-1
+CREATE TABLE "person" ("id" INTEGER NOT NULL, "name" VARCHAR(50) NOT NULL, "city" VARCHAR(30), CONSTRAINT "person_pkey" PRIMARY KEY ("id"));
