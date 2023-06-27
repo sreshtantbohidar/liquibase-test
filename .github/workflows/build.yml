@@ -15,7 +15,7 @@ env:
   
 jobs:
   runchecks:
-    name: "POC CI/CD Liquibase"
+    name: "Preprocessing"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
