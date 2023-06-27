@@ -3,8 +3,6 @@ name: Build and Test
 on:
   push:
     branches: [ development, staging, master ]
-  pull_request:
-    branches: [ development, staging, master ]
 
 env:
   dev_db: 'devDB'
@@ -20,12 +18,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: "Generate Changelogs"
-        uses: liquibase-github-actions/generate-changelog@v4.23.0
+      - name: "Update - Update the changes"
+        uses: liquibase-github-actions/update@v4.21.1
         with:
+          changeLogFile: "changelogs/example-changelog.sql"
+          changeExecListenerPropertiesFile: "liquibase.properties"
           url: '${{ env.psql_url }}${{ env.dev_db}}'
           driver: '${{ env.psql_driver }}'
           username: '${{ env.psql_username }}'
           password: '${{ env.psql_password }}'
-          overwriteOutputFile: True
-          changeLogFile: "changelogs/example-changelog.sql"
