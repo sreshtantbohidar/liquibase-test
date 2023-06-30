@@ -29,7 +29,7 @@ jobs:
         - name: "Update - Update the changes"
           uses: liquibase-github-actions/update@v4.21.1
           with:
-            changeLogFile: "changelogs/example-changelog.sql"
+            changeLogFile: "root.xml"
             url: '${{ secrets.url }}${{ env.dev_db }}'
             driver: '${{ env.psql_driver }}'
             username: '${{ secrets.username }}'
@@ -44,7 +44,7 @@ jobs:
         - name: "Update - Update the changes"
           uses: liquibase-github-actions/update@v4.21.1
           with:
-            changeLogFile: "changelogs/example-changelog.sql"
+            changeLogFile: "root.xml"
             url: '${{ secrets.url }}${{ env.qa_db }}'
             driver: '${{ env.psql_driver }}'
             username: '${{ secrets.username }}'
@@ -59,7 +59,7 @@ jobs:
         - name: "Update - Update the changes"
           uses: liquibase-github-actions/update@v4.21.1
           with:
-            changeLogFile: "changelogs/example-changelog.sql"
+            changeLogFile: "root.xml"
             url: '${{ secrets.url }}${{ env.prod_DB }}'
             driver: '${{ env.psql_driver }}'
             username: '${{ secrets.username }}'
