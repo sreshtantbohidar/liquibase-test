@@ -21,7 +21,7 @@ jobs:
         run: echo "$GITHUB_REF"
 
   dev-data-migration:
-      if: github.ref == 'refs/heads/development' && github.event_name == 'push'
+      if: github.ref == 'refs/heads/development' && github.event.pull_request.merged == true
       name: "DEV Data Migration"
       runs-on: ubuntu-latest
       steps:
@@ -36,7 +36,7 @@ jobs:
             password: '${{ secrets.password }}'
             
   qa-data-migration:
-      if: github.ref == 'refs/heads/staging' && github.event_name == 'push'
+      if: github.ref == 'refs/heads/staging' && github.event.pull_request.merged == true
       name: "QA Data Migration"
       runs-on: ubuntu-latest
       steps:
@@ -51,7 +51,7 @@ jobs:
             password: '${{ secrets.password }}'
             
   prod-data-migration:
-      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+      if: github.ref == 'refs/heads/master' && github.event.pull_request.merged == true
       name: "PROD Data Migration"
       runs-on: ubuntu-latest
       steps:
