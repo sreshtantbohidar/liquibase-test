@@ -4,6 +4,7 @@ on:
   push:
     branches: [ development, staging, master ]
 
+
 env:
   dev_db: 'devDB'
   qa_db: 'qaDB'
