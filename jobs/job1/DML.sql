@@ -1,4 +1,4 @@
 -- liquibase formatted sql
 
 -- changeset Sresht:job1_1 runOnChange:True
-INSERT INTO "person" (id, "name", city) VALUES (0, 'John', 'California');
+INSERT INTO public.company (id, "type", "name", department) VALUES(0, 'Manufacturing', 'Soft Co.', 'accounts');
