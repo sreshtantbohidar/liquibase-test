@@ -8,6 +8,6 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
-    <include file="job1/DDL.sql"/>
-    <include file="job1/DML.sql"/>  
+    <include file="project1/job1/DDL.sql"/>
+    <include file="project1/job1/DML.sql"/>  
 </databaseChangeLog>
