@@ -8,5 +8,6 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
-    <include file="jobs/job1/job1.xml"/>
+    <include file="project1/project1.xml"/>
+    <include file="project2/project2.xml"/>
 </databaseChangeLog>
