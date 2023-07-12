@@ -7,8 +7,14 @@ on:
 
 env:
   dev_db: 'devDB'
+  dev_db2: 'devDB2'
+  
   qa_db: 'qaDB'
+  qa_db2: 'qaDB2'
+  
   prod_DB: 'prodDB'
+  prod_DB2: 'prodDB2'
+  
   psql_driver:  'org.postgresql.Driver'
   
 jobs:
@@ -27,11 +33,19 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v3
-        - name: "Update - Update the changes"
+        - name: "[DEV] Update - Update the changes to Project1"
           uses: liquibase-github-actions/update@v4.21.1
           with:
-            changeLogFile: "root.xml"
+            changeLogFile: "project1/project1.xml"
             url: '${{ secrets.url }}${{ env.dev_db }}'
+            driver: '${{ env.psql_driver }}'
+            username: '${{ secrets.username }}'
+            password: '${{ secrets.password }}'
+        - name: "[DEV] Update - Update the changes to Project2"
+          uses: liquibase-github-actions/update@v4.21.1
+          with:
+            changeLogFile: "project2/project2.xml"
+            url: '${{ secrets.url }}${{ env.dev_db2 }}'
             driver: '${{ env.psql_driver }}'
             username: '${{ secrets.username }}'
             password: '${{ secrets.password }}'
@@ -42,11 +56,19 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v3
-        - name: "Update - Update the changes"
+        - name: "[QA] Update - Update the changes"
           uses: liquibase-github-actions/update@v4.21.1
           with:
-            changeLogFile: "root.xml"
+            changeLogFile: "project1/project1.xml"
             url: '${{ secrets.url }}${{ env.qa_db }}'
+            driver: '${{ env.psql_driver }}'
+            username: '${{ secrets.username }}'
+            password: '${{ secrets.password }}'
+        - name: "[QA] Update - Update the changes to Project2"
+          uses: liquibase-github-actions/update@v4.21.1
+          with:
+            changeLogFile: "project2/project2.xml"
+            url: '${{ secrets.url }}${{ env.qa_db2 }}'
             driver: '${{ env.psql_driver }}'
             username: '${{ secrets.username }}'
             password: '${{ secrets.password }}'
@@ -57,11 +79,19 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v3
-        - name: "Update - Update the changes"
+        - name: "[PROD] Update - Update the changes"
           uses: liquibase-github-actions/update@v4.21.1
           with:
-            changeLogFile: "root.xml"
+            changeLogFile: "project1/project1.xml"
             url: '${{ secrets.url }}${{ env.prod_DB }}'
+            driver: '${{ env.psql_driver }}'
+            username: '${{ secrets.username }}'
+            password: '${{ secrets.password }}'
+        - name: "[PROD] Update - Update the changes to Project2"
+          uses: liquibase-github-actions/update@v4.21.1
+          with:
+            changeLogFile: "project2/project2.xml"
+            url: '${{ secrets.url }}${{ env.prod_DB2 }}'
             driver: '${{ env.psql_driver }}'
             username: '${{ secrets.username }}'
             password: '${{ secrets.password }}'
